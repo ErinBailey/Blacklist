@@ -1,3 +1,4 @@
+# Sample App obtained [here](https://auth0.com/docs/quickstarts) from [Auth0](https://auth0.com/)
 
 ## Running Locally
 ### In the directory of the repository
