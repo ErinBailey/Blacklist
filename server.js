@@ -12,7 +12,7 @@ app.use(WebhooksApi);
 
 webhooks.on('*', ({id, name, payload}) => {
   console.log("payload ###: ", payload)
-  console.log("name ###: ", payload)
+  console.log("name ###: ", name)
 })
 
 app.get("/auth_config.json", (req, res) => {
