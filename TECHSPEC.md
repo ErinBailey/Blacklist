@@ -11,9 +11,9 @@ Blacklist Service Tech Spec:
 # Tech Stack
   - Node.js
   - Express.js for routing
-  - Auth0 or Heroku for hosting
+  - Heroku for hosting
   - Postgres if a DB is needed
-  - React if a front end is needed
+  - Auth0 quickstart for front end
 # Implementation / Approach
   - Use a github webhook to trigger an event change to the github IP list repo and receive a payload with the changes. [Explain why a webhook would work best. i.e mention time and how important that is]
   - Populate the blacklist with the new IPs
