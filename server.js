@@ -10,8 +10,8 @@ const webhooks = new WebhooksApi({
 })
 
 webhooks.on('*', ({id, name, payload}) => {
-  console.log("payload: ", payload)
-  console.log("name: ", name)
+  console.log("payload ###: ", payload)
+  console.log("name ###: ", name)
 })
 
 app.use(morgan("dev"));
@@ -31,9 +31,9 @@ app.post("/sample-ip-event", (req, res) => {
   console.log("req.connection.remoteAddress!!!!!", req.connection.remoteAddress) // remote IP
   console.log("request.headers['x-forwarded-for']!!!!!", req.headers['x-forwarded-for']) // remote IP if the server is behind a proxy
   var message = req
-  var headers = res.headers
-  console.log("message!!!!", message)
+  var headers = req.headers
   console.log("headers!!!!", headers)
+  console.log("message!!!!", message)
   res.status(200);
   res.send(req.body);
 });
