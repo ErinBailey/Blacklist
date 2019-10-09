@@ -1,8 +1,19 @@
 const express = require("express");
 const { join } = require("path");
 const app = express();
+const WebhooksApi = require('@octokit/webhooks')
+
+const webhooks = new WebhooksApi({
+  secret: process.env.GITHUB_WEBHOOK_SECRET || 'mysecret'
+})
 
 app.use(express.static(join(__dirname, "public")));
+app.use(WebhooksApi);
+
+webhooks.on('*', ({id, name, payload}) => {
+  console.log("payload ###: ", payload)
+  console.log("name ###: ", payload)
+})
 
 app.get("/auth_config.json", (req, res) => {
   res.sendFile(join(__dirname, "auth_config.json"));
