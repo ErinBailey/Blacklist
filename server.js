@@ -1,19 +1,21 @@
 const express = require("express");
 const { join } = require("path");
 const app = express();
-const WebhooksApi = require('@octokit/webhooks')
-
-const webhooks = new WebhooksApi({
-  secret: process.env.GITHUB_WEBHOOK_SECRET || 'mysecret'
-})
+// var createHandler = require('github-webhook-handler')
+// var handler = createHandler({ path: '/webhook', secret: 'secret123321'});
 
 app.use(express.static(join(__dirname, "public")));
-app.use(WebhooksApi);
+// app.use(createHandler);
 
-webhooks.on('*', ({id, name, payload}) => {
-  console.log("payload ###: ", payload)
-  console.log("name ###: ", name)
-})
+// handler.on('error', function (err) {
+//   console.error('Error:', err.message)
+// })
+
+// handler.on('push', function (event) {
+//   console.log('Received a push event for %s to %s',
+//     event.payload.repository.name,
+//     event.payload.ref)
+// })
 
 app.get("/auth_config.json", (req, res) => {
   res.sendFile(join(__dirname, "auth_config.json"));
