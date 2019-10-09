@@ -21,8 +21,10 @@ app.get("/", (_, res) => {
 app.post("/sample-ip-event", (req, res) => {
   console.log("req.connection.remoteAddress!!!!!", req.connection.remoteAddress) // remote IP
   console.log("request.headers['x-forwarded-for']!!!!!", req.headers['x-forwarded-for']) // remote IP if the server is behind a proxy
-  var message = req.body
-  console.log("message test!!!!", message)
+  var message = req
+  var headers = res.headers
+  console.log("message!!!!", message)
+  console.log("headers!!!!", headers)
   res.status(200);
   res.send(req.body);
 });
