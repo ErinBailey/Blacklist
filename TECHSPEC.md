@@ -40,3 +40,4 @@ Blacklist Service Tech Spec:
   - Security of the webhook. Data of blacklisted IPs being leaked could mean bad actors know what is a good IP to spoof
   - What happens if github goes down and the user is trying to login? Find a way to fail elegantly. Should I store updated IPs in a database as a backup? This is a decent possibility but seems like a future feature. (DB would also fix this)
   - If I use a DB, I need to make sure to only update it at the appropriate time. Make sure data is maintained if something goes down so it's not overwritten with bad/empty data. i.e fail elegantly
+  - If the repo is constantly being updated will I need some queing system to handle the webhook requests? like rabbitMQ or Quebert?
