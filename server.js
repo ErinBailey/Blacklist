@@ -3,7 +3,16 @@ const { join } = require("path");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const app = express();
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+const WebhooksApi = require('@octokit/webhooks')
+const webhooks = new WebhooksApi({
+  secret: ''
+})
+
+webhooks.on('*', ({id, name, payload}) => {
+  console.log("payload: ", payload)
+  console.log("name: ", name)
+})
 
 app.use(morgan("dev"));
 app.use(helmet());
