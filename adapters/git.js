@@ -7,9 +7,8 @@ exports.initialClone = function() {
         if (!fs.existsSync("./blacklist")) {
             console.log("Cloning repo")
             resolve(Git.Clone("https://github.com/ErinBailey/Sample-IPs", "./blacklist"))
-        } else {
-            reject ('IPs are up to date')
         }
+        console.log("IPs are up to date")
     })
     promise.then(function() {
         console.log("Inserting cloned IPs into DB")

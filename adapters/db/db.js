@@ -6,7 +6,7 @@ const client = new Client({
 // do a connection pool
 
 exports.initialInsert = function() {
-    client.connect()
+    // client.connect()
     if (fs.existsSync("./blacklist/anonymous.netset")){
         var IPs = fs.readFileSync("./blacklist/anonymous.netset").toString().split("\n");
         for(i in IPs) {
@@ -25,9 +25,9 @@ exports.initialInsert = function() {
 }
 
 exports.getBlacklist = function() {
-    client.connect()
+    // client.connect()
     client.query('SELECT * from ipAddresses', (err, res) => {
         console.log(err ? err.stack : res.rows) // Hello World!
     })
-    client.end()
+    // client.end()
 }
