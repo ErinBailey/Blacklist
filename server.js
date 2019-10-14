@@ -23,17 +23,10 @@ app.get("/blacklist", jsonParser, (req, res) => { // gets the blacklist from the
   res.send(res.body);
 });
 
-app.get("/blacklist-repo", jsonParser, (req, res) => {  // gets the blacklist from the remote repo
-  db.initialInsert();
-  res.status(200);
-  res.send(res.body);
-})
-
-// on start, if blacklist directory does not exist we clone the repo
+// on start, if blacklist directory does not exist we clone the repo and insert into DB
 app.listen(port, () => {
   console.log("Express server listening on port", port)
   git.initialClone();
-  // db.initialInsert();
 });
 
 module.exports = app;

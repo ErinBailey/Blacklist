@@ -3,9 +3,16 @@ const fs = require("fs");
 const db = require("./db/db");
 
 exports.initialClone = function() {
-    if (!fs.existsSync("./blacklist")) {
-        console.log("Cloning repo")
-        Git.Clone("https://github.com/ErinBailey/Sample-IPs", "./blacklist")
-      }
-    console.log("IPs are up to date")
+    var promise = new Promise(function(resolve, reject) {
+        if (!fs.existsSync("./blacklist")) {
+            console.log("Cloning repo")
+            resolve(Git.Clone("https://github.com/ErinBailey/Sample-IPs", "./blacklist"))
+        } else {
+            reject ('IPs are up to date')
+        }
+    })
+    promise.then(function() {
+        console.log("Inserting cloned IPs into DB")
+        db.initialInsert();
+      });
 }
