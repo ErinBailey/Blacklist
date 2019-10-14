@@ -20,6 +20,7 @@
     "github-webhook-handler": "^1.0.0",
     "helmet": "^3.21.0",
     "morgan": "^1.9.1",
-    "nodegit": "^0.26.2"
+    "nodegit": "^0.26.2",
+    "pg": "^7.12.1"
   }
 }
