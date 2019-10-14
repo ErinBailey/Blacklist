@@ -1,9 +1,10 @@
 const express = require("express");
+const app = express();
 const bodyParser = require("body-parser")
 const { join } = require("path");
-const app = express();
-
-var jsonParser = bodyParser.json()
+const jsonParser = bodyParser.json()
+var git = require("./adapters/git");
+const port =  process.env.PORT || 3000;
 
 app.use(express.static(join(__dirname, "public")));
 
@@ -16,21 +17,14 @@ app.get("/", (_, res) => {
 });
 
 app.post("/sample-ip-event", jsonParser, (req, res) => {
-  console.log("req.connection.remoteAddress!!!!!", req.connection.remoteAddress) // remote IP
-  console.log("request.headers['x-forwarded-for']!!!!!", req.headers['x-forwarded-for']) // remote IP if the server is behind a proxy
-  var headers = req.headers
-  console.log("headers!!!!", headers)
-  console.log("request!!!!!", req)
-  console.log("requestBody!!!!!", req.body)
-  console.log("response!!!!!", res)
-  console.log("responseBody!!!!!", res.body)
   res.status(200);
   res.send(res.body);
 });
 
-const port =  process.env.PORT || 3000;
+// on start, if blacklist directory does not exist we clone the repo
 app.listen(port, () => {
-  console.log('Express server listening on port', port)
+  console.log("Express server listening on port", port)
+  git.initialClone();
 });
 
 module.exports = app;
