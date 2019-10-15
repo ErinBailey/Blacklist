@@ -26,10 +26,10 @@ app.post("/sample-ip-event", (req, res) => {
 
 app.post("/ip-invalid", (req, res) => {
   var ip = req.body.ip
-  var result = db.checkInvalidIP(ip)
-  console.log("result 4", result)
+  db.checkInvalidIP(ip, function(isInvalid){
+    res.send(isInvalid) 
+  })
   res.status(200);
-  res.send(result) // this should be true or false
 });
 
 // on start, if blacklist directory does not exist we clone the repo and insert into DB
