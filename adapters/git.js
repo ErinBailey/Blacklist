@@ -15,3 +15,7 @@ exports.initialClone = function() {
         db.initialInsert();
       });
 }
+
+exports.ipUpdateList = function() {
+    
+}
