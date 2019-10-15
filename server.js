@@ -18,7 +18,7 @@ app.get("/", (_, res) => {
 });
 
 app.post("/sample-ip-event", (req, res) => {
-  // Need ngrok tunnel for public IP while running locally. Stick the address in the github webhook settings for Sample-IPs
+  // TODO Need ngrok tunnel for public IP while running locally. Stick the address in the github webhook settings for Sample-IPs
   console.log("Webhook indicating a change in the repo has occurred")
   res.status(200);
   res.send();

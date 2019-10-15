@@ -6,7 +6,7 @@ const client = new Client({
 client.connect()
 
 exports.initialInsert = function() {
-    // make this multi-file firendly. Instead of a single file, loop through the directory and do this
+    // TODO make this multi-file firendly. Instead of a single file, loop through the directory and do this
     if (fs.existsSync("./blacklist/anonymous.netset")){
         var IPs = fs.readFileSync("./blacklist/anonymous.netset").toString().split("\n");
         for(i in IPs) {
@@ -23,13 +23,13 @@ exports.initialInsert = function() {
 }
 
 exports.checkInvalidIP = function(ip, callback) {
-    var ipArray = []
-    ipArray.push(ip)
-    var isInvalidQuery = `SELECT INET '62.73.9.254' = '62.73.9.254';` // sample for trying to return true to the response body for /ip-invalid
+    var isInvalidQuery = `SELECT INET '${ip}' = '62.73.9.254';` // sample for trying to return true to the response body for /ip-invalid
     
     client.query(isInvalidQuery, (err, res) => {
         if (err) {
-            callback(err)
+            console.log(err.stack)
+            callback("Failure querying IP")
+            return
         }
         callback(res.rows[0]['?column?']);
     });
