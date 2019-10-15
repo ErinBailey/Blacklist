@@ -1,4 +1,4 @@
 CREATE TABLE ipAddresses (
-    addressCIDR CIDR UNIQUE,
-    addressINET INET UNIQUE
+    id SERIAL,
+    addressINET INET
 );

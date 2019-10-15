@@ -18,8 +18,9 @@ app.get("/", (_, res) => {
 });
 
 app.post("/sample-ip-event", (req, res) => {
-  // TODO Need ngrok tunnel for public IP while running locally. Stick the address in the github webhook settings for Sample-IPs
+  // run `ngrok http 3000` WHILE running `npm start` in another terminal
   console.log("Webhook indicating a change in the repo has occurred")
+  git.ipUpdateList()
   res.status(200);
   res.send();
 });
